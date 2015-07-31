@@ -8,21 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
-var TabsComponent_1 = require('./TabsComponent');
-// Annotation section
-var MyAppComponent = (function () {
-    function MyAppComponent() {
-        this.name = 'Alice';
+/**
+ * Created by nicojs on 7/31/2015.
+ */
+var TabsComponent = (function () {
+    function TabsComponent() {
     }
-    MyAppComponent = __decorate([
+    TabsComponent = __decorate([
         angular2_1.Component({
-            selector: 'my-app'
+            selector: 'tabs'
         }),
         angular2_1.View({
-            template: "<h1>Hello {{ name }}</h1>\n    <tabs>\n    </tabs>\n    ",
-            directives: [TabsComponent_1.default]
+            template: "\n    <ul><li></li></ul>\n    "
         })
-    ], MyAppComponent);
-    return MyAppComponent;
+    ], TabsComponent);
+    return TabsComponent;
 })();
-angular2_1.bootstrap(MyAppComponent);
+exports.default = TabsComponent;
