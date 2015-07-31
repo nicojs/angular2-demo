@@ -9,9 +9,11 @@ import {Component, View, NgFor, bootstrap, Parent} from 'angular2/angular2';
 })
 @View({
     template: `
-        <ul class="nav nav-tabs">
-        <li *ng-for="#tab of tabs"><a href="#">{{tab.title}}</a></li>
-        </ul>
+    <ul class="nav nav-tabs">
+        <li *ng-for="#tab of tabs" [class.active]="tab.isActive">
+            <a href="#" (click)="activateTab(tab)">{{tab.title}}</a>
+        </li>
+    </ul>
 
     <content></content>
     `,
@@ -27,6 +29,12 @@ export class TabsComponent {
     addTab(tab:TabComponent) {
         this.tabs.push(tab);
     }
+
+    activateTab(tab:TabComponent) {
+        this.tabs.forEach(tag => tag.isActive = false);
+        tab.isActive = true;
+        return false;
+    }
 }
 
 @Component({
@@ -35,11 +43,12 @@ export class TabsComponent {
 })
 @View({
     template: `
-    <div></div>
+    <div [hidden]="!isActive"><content></content></div>
     `
 })
 export class TabComponent {
     title:string;
+    isActive:boolean;
 
     constructor(@Parent() tabs:TabsComponent) {
         tabs.addTab(this);

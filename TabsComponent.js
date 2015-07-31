@@ -24,12 +24,17 @@ var TabsComponent = (function () {
     TabsComponent.prototype.addTab = function (tab) {
         this.tabs.push(tab);
     };
+    TabsComponent.prototype.activateTab = function (tab) {
+        this.tabs.forEach(function (tag) { return tag.isActive = false; });
+        tab.isActive = true;
+        return false;
+    };
     TabsComponent = __decorate([
         angular2_1.Component({
             selector: 'tabs'
         }),
         angular2_1.View({
-            template: "\n        <ul class=\"nav nav-tabs\">\n        <li *ng-for=\"#tab of tabs\"><a href=\"#\">{{tab.title}}</a></li>\n        </ul>\n\n    <content></content>\n    ",
+            template: "\n    <ul class=\"nav nav-tabs\">\n        <li *ng-for=\"#tab of tabs\" [class.active]=\"tab.isActive\">\n            <a href=\"#\" (click)=\"activateTab(tab)\">{{tab.title}}</a>\n        </li>\n    </ul>\n\n    <content></content>\n    ",
             directives: [angular2_1.NgFor]
         }), 
         __metadata('design:paramtypes', [])
@@ -47,7 +52,7 @@ var TabComponent = (function () {
             properties: ['title: tab-title']
         }),
         angular2_1.View({
-            template: "\n    <div></div>\n    "
+            template: "\n    <div [hidden]=\"!isActive\"><content></content></div>\n    "
         }),
         __param(0, angular2_1.Parent()), 
         __metadata('design:paramtypes', [TabsComponent])
