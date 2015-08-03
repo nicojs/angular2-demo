@@ -13,7 +13,7 @@ import {TabsComponent, TabComponent } from 'TabsComponent';
             </div>
             <button class="btn btn-success">Bound without angular2</button>
             {{buttonClicked}}
-    <tabs>
+    <tabs (tab-switched)="tabSwitched($event)">
         <tab tab-title="Left">
             <h2>Left side</h2>
         </tab>
@@ -33,6 +33,10 @@ class MyAppComponent {
         document.querySelector('.btn-success').addEventListener('click', () =>{
             window.setTimeout(() => this.buttonClicked = true, 2000);
         });
+    }
+
+    tabSwitched(event){
+        console.log(event);
     }
 }
 

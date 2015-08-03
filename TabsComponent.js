@@ -17,6 +17,7 @@ var angular2_1 = require('angular2/angular2');
 var TabsComponent = (function () {
     function TabsComponent() {
         this.tabs = [];
+        this.tabSwitched = new angular2_1.EventEmitter();
     }
     TabsComponent.prototype.addTab = function (tab) {
         this.tabs.push(tab);
@@ -24,11 +25,12 @@ var TabsComponent = (function () {
     TabsComponent.prototype.activateTab = function (tab) {
         this.tabs.forEach(function (tag) { return tag.isActive = false; });
         tab.isActive = true;
-        return false;
+        this.tabSwitched.next('tabSwitched');
     };
     TabsComponent = __decorate([
         angular2_1.Component({
-            selector: 'tabs'
+            selector: 'tabs',
+            events: ['tabSwitched']
         }),
         angular2_1.View({
             template: "\n    <ul class=\"nav nav-tabs\">\n        <li *ng-for=\"#tab of tabs\" [class.active]=\"tab.isActive\">\n            <a href=\"#\" (click)=\"activateTab(tab)\">{{tab.title}}</a>\n        </li>\n    </ul>\n\n    <content></content>\n    ",

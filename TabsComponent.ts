@@ -1,11 +1,13 @@
 /// <reference path="typings/angular2/angular2.d.ts" />
-import {Component, View, NgFor, bootstrap, Parent} from 'angular2/angular2';
+import {Component, View, NgFor, bootstrap, Parent, EventEmitter} from 'angular2/angular2';
+
 
 /**
  * Created by nicojs on 7/31/2015.
  */
 @Component({
-    selector: 'tabs'
+    selector: 'tabs',
+    events: ['tabSwitched']
 })
 @View({
     template: `
@@ -21,9 +23,11 @@ import {Component, View, NgFor, bootstrap, Parent} from 'angular2/angular2';
 })
 export class TabsComponent {
     tabs:Array<TabComponent>;
+    tabSwitched: EventEmitter;
 
     constructor() {
         this.tabs = [];
+        this.tabSwitched =  new EventEmitter();
     }
 
     addTab(tab:TabComponent) {
@@ -33,7 +37,8 @@ export class TabsComponent {
     activateTab(tab:TabComponent) {
         this.tabs.forEach(tag => tag.isActive = false);
         tab.isActive = true;
-        return false;
+        this.tabSwitched.next('tabSwitched');
+        //return false;
     }
 }
 

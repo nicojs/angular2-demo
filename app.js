@@ -20,12 +20,15 @@ var MyAppComponent = (function () {
             window.setTimeout(function () { return _this.buttonClicked = true; }, 2000);
         });
     }
+    MyAppComponent.prototype.tabSwitched = function (event) {
+        console.log(event);
+    };
     MyAppComponent = __decorate([
         angular2_1.Component({
             selector: 'my-app'
         }),
         angular2_1.View({
-            template: "<h1>Hello {{ name.value }}</h1>\n            <div class=\"form-group\">\n                <input class=\"form-control\" name=\"name\" type=\"text\" #name />\n            </div>\n            <button class=\"btn btn-success\">Bound without angular2</button>\n            {{buttonClicked}}\n    <tabs>\n        <tab tab-title=\"Left\">\n            <h2>Left side</h2>\n        </tab>\n        <tab tab-title=\"Right\">\n            <h2>Right side</h2>\n        </tab>\n    </tabs>\n    ",
+            template: "<h1>Hello {{ name.value }}</h1>\n            <div class=\"form-group\">\n                <input class=\"form-control\" name=\"name\" type=\"text\" #name />\n            </div>\n            <button class=\"btn btn-success\">Bound without angular2</button>\n            {{buttonClicked}}\n    <tabs (tab-switched)=\"tabSwitched($event)\">\n        <tab tab-title=\"Left\">\n            <h2>Left side</h2>\n        </tab>\n        <tab tab-title=\"Right\">\n            <h2>Right side</h2>\n        </tab>\n    </tabs>\n    ",
             directives: [TabsComponent_1.TabsComponent, TabsComponent_1.TabComponent]
         }), 
         __metadata('design:paramtypes', [])
