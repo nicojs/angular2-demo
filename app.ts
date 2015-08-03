@@ -9,8 +9,10 @@ import {TabsComponent, TabComponent } from 'TabsComponent';
 @View({
     template: `<h1>Hello {{ name.value }}</h1>
             <div class="form-group">
-                <input class="form-control" name="name" type="text" #name (keyup)/>
+                <input class="form-control" name="name" type="text" #name />
             </div>
+            <button class="btn btn-success">Bound without angular2</button>
+            {{buttonClicked}}
     <tabs>
         <tab tab-title="Left">
             <h2>Left side</h2>
@@ -24,9 +26,13 @@ import {TabsComponent, TabComponent } from 'TabsComponent';
 })
 class MyAppComponent {
     name:string;
+    buttonClicked: boolean;
 
     constructor() {
         this.name = 'Alice';
+        document.querySelector('.btn-success').addEventListener('click', () =>{
+            window.setTimeout(() => this.buttonClicked = true, 2000);
+        });
     }
 }
 
