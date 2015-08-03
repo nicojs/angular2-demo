@@ -12,7 +12,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
 var TabsComponent_1 = require('TabsComponent');
-// Annotation section
 var MyAppComponent = (function () {
     function MyAppComponent() {
         this.name = 'Alice';
@@ -22,7 +21,7 @@ var MyAppComponent = (function () {
             selector: 'my-app'
         }),
         angular2_1.View({
-            template: "<h1>Hello {{ name }}</h1>\n\n    <tabs>\n        <tab tab-title=\"Left\">\n            <h2>Left side</h2>\n        </tab>\n        <tab tab-title=\"Right\">\n            <h2>Right side</h2>\n        </tab>\n    </tabs>\n    ",
+            template: "<h1>Hello {{ name.value }}</h1>\n            <div class=\"form-group\">\n                <input class=\"form-control\" name=\"name\" type=\"text\" #name (keyup)/>\n            </div>\n    <tabs>\n        <tab tab-title=\"Left\">\n            <h2>Left side</h2>\n        </tab>\n        <tab tab-title=\"Right\">\n            <h2>Right side</h2>\n        </tab>\n    </tabs>\n    ",
             directives: [TabsComponent_1.TabsComponent, TabsComponent_1.TabComponent]
         }), 
         __metadata('design:paramtypes', [])

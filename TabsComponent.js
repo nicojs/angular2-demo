@@ -14,9 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 /// <reference path="typings/angular2/angular2.d.ts" />
 var angular2_1 = require('angular2/angular2');
-/**
- * Created by nicojs on 7/31/2015.
- */
 var TabsComponent = (function () {
     function TabsComponent() {
         this.tabs = [];

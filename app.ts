@@ -7,8 +7,10 @@ import {TabsComponent, TabComponent } from 'TabsComponent';
     selector: 'my-app'
 })
 @View({
-    template: `<h1>Hello {{ name }}</h1>
-
+    template: `<h1>Hello {{ name.value }}</h1>
+            <div class="form-group">
+                <input class="form-control" name="name" type="text" #name (keyup)/>
+            </div>
     <tabs>
         <tab tab-title="Left">
             <h2>Left side</h2>
